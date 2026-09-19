@@ -1,0 +1,4618 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Tomorrow — Plan Before You Sleep</title>
+
+<meta
+    name="description"
+    content="Plan tomorrow before you sleep. Clear your mind and start your day with intention."
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+    rel="stylesheet"
+>
+
+<link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+>
+
+<style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
+:root{
+    --tm-bg:#f5f1e8;
+    --tm-paper:#fffdf8;
+    --tm-paper-2:#faf7ef;
+
+    --tm-green:#263d32;
+    --tm-green-2:#385646;
+
+    --tm-gold:#b38a3e;
+    --tm-gold-light:#ead9b0;
+
+    --tm-text:#26312b;
+    --tm-muted:#7b817b;
+
+    --tm-line:#e4ded1;
+
+    --tm-danger:#a64d45;
+
+    --tm-shadow:
+        0 20px 55px rgba(38,61,50,.08);
+
+    --tm-radius:22px;
+}
+
+
+/* =========================================================
+   NIGHT THEME
+========================================================= */
+
+body.tm-night{
+
+    --tm-bg:#101613;
+    --tm-paper:#17201b;
+    --tm-paper-2:#1b261f;
+
+    --tm-green:#dfe8df;
+    --tm-green-2:#b7c8ba;
+
+    --tm-gold:#d4ae61;
+    --tm-gold-light:#4b402b;
+
+    --tm-text:#edf3ed;
+    --tm-muted:#9ca99f;
+
+    --tm-line:#2d3932;
+
+    --tm-danger:#d77c72;
+
+    --tm-shadow:
+        0 25px 70px rgba(0,0,0,.28);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+*::-webkit-scrollbar{
+    width:0;
+    height:0;
+    display:none;
+}
+
+html,
+body{
+    scrollbar-width:none;
+    -ms-overflow-style:none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar{
+    width:0;
+    height:0;
+    display:none;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    min-height:100vh;
+    background:var(--tm-bg);
+    color:var(--tm-text);
+    font-family:"DM Sans",sans-serif;
+
+    transition:
+        background .35s ease,
+        color .35s ease;
+}
+
+button,
+input,
+textarea,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+input,
+textarea,
+select{
+    outline:none;
+}
+
+a{
+    color:inherit;
+    text-decoration:none;
+}
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+.tm-app{
+    min-height:100vh;
+}
+
+
+/* =========================================================
+   SIDEBAR
+========================================================= */
+
+.tm-sidebar{
+
+    position:fixed;
+
+    left:0;
+    top:0;
+    bottom:0;
+
+    width:250px;
+
+    padding:30px 20px;
+
+    background:var(--tm-paper);
+
+    border-right:1px solid var(--tm-line);
+
+    display:flex;
+    flex-direction:column;
+
+    z-index:100;
+
+    transition:
+        background .35s ease,
+        border-color .35s ease;
+}
+
+.tm-brand{
+    padding:4px 12px 30px;
+}
+
+.tm-brand-mark{
+
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+
+    border:1px solid var(--tm-gold);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:var(--tm-gold);
+
+    margin-bottom:15px;
+
+    font-size:18px;
+}
+
+.tm-brand h1{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:28px;
+
+    line-height:1;
+
+    font-weight:600;
+}
+
+.tm-brand p{
+
+    margin-top:8px;
+
+    font-size:11px;
+
+    letter-spacing:.14em;
+
+    text-transform:uppercase;
+
+    color:var(--tm-muted);
+}
+
+
+/* =========================================================
+   NAV
+========================================================= */
+
+.tm-nav{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+}
+
+.tm-nav-btn{
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--tm-muted);
+
+    padding:13px 14px;
+
+    border-radius:13px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    text-align:left;
+
+    transition:.25s ease;
+}
+
+.tm-nav-btn i{
+    width:20px;
+    text-align:center;
+}
+
+.tm-nav-btn:hover{
+
+    color:var(--tm-text);
+
+    background:var(--tm-paper-2);
+}
+
+.tm-nav-btn.active{
+
+    color:var(--tm-green);
+
+    background:
+        rgba(179,138,62,.10);
+}
+
+body.tm-night .tm-nav-btn.active{
+    color:var(--tm-gold);
+}
+
+
+/* =========================================================
+   SIDEBAR BOTTOM
+========================================================= */
+
+.tm-sidebar-bottom{
+
+    margin-top:auto;
+
+    padding:18px 12px 0;
+
+    border-top:1px solid var(--tm-line);
+}
+
+.tm-sidebar-bottom small{
+
+    display:block;
+
+    color:var(--tm-muted);
+
+    line-height:1.6;
+
+    font-size:11px;
+}
+
+
+/* =========================================================
+   MAIN
+========================================================= */
+
+.tm-main{
+
+    margin-left:250px;
+
+    min-height:100vh;
+}
+
+.tm-container{
+
+    width:min(
+        1180px,
+        calc(100% - 70px)
+    );
+
+    margin:auto;
+
+    padding:32px 0 80px;
+}
+
+
+/* =========================================================
+   TOPBAR
+========================================================= */
+
+.tm-topbar{
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    gap:20px;
+
+    margin-bottom:35px;
+}
+
+.tm-date-label{
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.18em;
+
+    color:var(--tm-gold);
+
+    font-weight:700;
+}
+
+.tm-date-value{
+
+    margin-top:4px;
+
+    font-size:14px;
+
+    color:var(--tm-muted);
+}
+
+.tm-live-time{
+
+    margin-top:3px;
+
+    font-size:12px;
+
+    color:var(--tm-muted);
+
+    letter-spacing:.08em;
+}
+
+
+/* =========================================================
+   DAY / NIGHT TOGGLE
+========================================================= */
+
+.tm-theme-toggle{
+
+    border:1px solid var(--tm-line);
+
+    background:var(--tm-paper);
+
+    color:var(--tm-text);
+
+    border-radius:999px;
+
+    padding:7px 9px 7px 8px;
+
+    display:flex;
+
+    align-items:center;
+
+    gap:9px;
+
+    transition:.3s ease;
+
+    box-shadow:
+        0 7px 22px rgba(38,61,50,.05);
+}
+
+.tm-theme-toggle:hover{
+
+    border-color:var(--tm-gold);
+}
+
+.tm-theme-icon{
+
+    width:30px;
+    height:30px;
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    background:var(--tm-paper-2);
+
+    color:var(--tm-gold);
+
+    font-size:13px;
+}
+
+#themeText{
+
+    font-size:12px;
+
+    font-weight:700;
+}
+
+.tm-toggle-track{
+
+    width:38px;
+    height:20px;
+
+    border-radius:999px;
+
+    background:var(--tm-line);
+
+    padding:3px;
+
+    display:flex;
+
+    align-items:center;
+
+    transition:.3s ease;
+}
+
+.tm-toggle-dot{
+
+    width:14px;
+    height:14px;
+
+    border-radius:50%;
+
+    background:var(--tm-paper);
+
+    box-shadow:
+        0 2px 5px rgba(0,0,0,.15);
+
+    transition:.3s ease;
+}
+
+body.tm-night .tm-toggle-track{
+
+    background:var(--tm-gold);
+}
+
+body.tm-night .tm-toggle-dot{
+
+    transform:translateX(18px);
+}
+
+
+/* =========================================================
+   SECTIONS
+========================================================= */
+
+.tm-section{
+    display:none;
+}
+
+.tm-section.active{
+
+    display:block;
+
+    animation:
+        tmFade .4s ease;
+}
+
+@keyframes tmFade{
+
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   HERO
+========================================================= */
+
+.tm-hero{
+
+    position:relative;
+
+    padding:10px 0 40px;
+
+    overflow:hidden;
+}
+
+.tm-hero::after{
+
+    content:"";
+
+    position:absolute;
+
+    right:0;
+    top:0;
+
+    width:180px;
+    height:180px;
+
+    border-radius:50%;
+
+    border:1px solid var(--tm-gold-light);
+
+    opacity:.55;
+
+    pointer-events:none;
+}
+
+.tm-kicker{
+
+    color:var(--tm-gold);
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.18em;
+
+    font-weight:700;
+
+    margin-bottom:12px;
+}
+
+.tm-hero h2{
+
+    max-width:760px;
+
+    font-family:"Playfair Display",serif;
+
+    font-size:
+        clamp(42px,6vw,76px);
+
+    line-height:.98;
+
+    font-weight:600;
+
+    letter-spacing:-.035em;
+}
+
+.tm-hero h2 span{
+
+    color:var(--tm-gold);
+}
+
+.tm-hero-text{
+
+    max-width:590px;
+
+    margin-top:20px;
+
+    color:var(--tm-muted);
+
+    line-height:1.8;
+
+    font-size:15px;
+}
+
+
+/* =========================================================
+   STATS
+========================================================= */
+
+.tm-stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    border-top:1px solid var(--tm-line);
+
+    border-bottom:1px solid var(--tm-line);
+
+    margin:15px 0 40px;
+}
+
+.tm-stat{
+
+    padding:20px 24px;
+
+    border-right:1px solid var(--tm-line);
+}
+
+.tm-stat:last-child{
+    border-right:0;
+}
+
+.tm-stat-number{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:32px;
+
+    color:var(--tm-green);
+}
+
+body.tm-night .tm-stat-number{
+    color:var(--tm-gold);
+}
+
+.tm-stat-label{
+
+    margin-top:3px;
+
+    color:var(--tm-muted);
+
+    font-size:11px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+}
+
+
+/* =========================================================
+   SECTION HEAD
+========================================================= */
+
+.tm-section-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:end;
+
+    gap:20px;
+
+    margin-bottom:18px;
+}
+
+.tm-section-head h3{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:32px;
+
+    font-weight:600;
+}
+
+.tm-section-head p{
+
+    color:var(--tm-muted);
+
+    font-size:13px;
+
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   TODAY FOCUS
+========================================================= */
+
+.tm-today-focus{
+
+    margin:0 0 25px;
+
+    padding:19px 0;
+
+    border-top:1px solid var(--tm-line);
+
+    border-bottom:1px solid var(--tm-line);
+}
+
+.tm-today-focus-label{
+
+    color:var(--tm-gold);
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:.16em;
+
+    font-weight:700;
+
+    margin-bottom:7px;
+}
+
+.tm-today-focus-text{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:
+        clamp(22px,3vw,29px);
+
+    line-height:1.35;
+
+    color:var(--tm-text);
+}
+
+.tm-today-focus-text strong{
+
+    color:var(--tm-gold);
+
+    font-weight:600;
+}
+
+
+/* =========================================================
+   PROGRESS
+========================================================= */
+
+.tm-progress-wrap{
+
+    margin-bottom:25px;
+}
+
+.tm-progress-info{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    font-size:12px;
+
+    color:var(--tm-muted);
+
+    margin-bottom:8px;
+}
+
+.tm-progress-bar{
+
+    width:100%;
+
+    height:7px;
+
+    background:var(--tm-line);
+
+    border-radius:999px;
+
+    overflow:hidden;
+}
+
+.tm-progress-fill{
+
+    height:100%;
+
+    width:0%;
+
+    border-radius:999px;
+
+    background:var(--tm-gold);
+
+    transition:width .5s ease;
+}
+
+
+/* =========================================================
+   TASK LIST
+========================================================= */
+
+.tm-task-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:1px;
+
+    border-top:1px solid var(--tm-line);
+}
+
+.tm-task{
+
+    display:grid;
+
+    grid-template-columns:
+        auto 1fr auto;
+
+    align-items:center;
+
+    gap:16px;
+
+    padding:18px 5px;
+
+    border-bottom:1px solid var(--tm-line);
+
+    transition:.25s ease;
+}
+
+.tm-task:hover{
+
+    padding-left:10px;
+
+    padding-right:10px;
+
+    background:var(--tm-paper-2);
+}
+
+.tm-task-check{
+
+    width:23px;
+    height:23px;
+
+    border-radius:50%;
+
+    border:1.5px solid var(--tm-muted);
+
+    background:transparent;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    color:transparent;
+
+    transition:.25s ease;
+}
+
+.tm-task.completed .tm-task-check{
+
+    border-color:var(--tm-gold);
+
+    background:var(--tm-gold);
+
+    color:#fff;
+}
+
+.tm-task-title{
+
+    font-size:15px;
+
+    font-weight:600;
+}
+
+.tm-task.completed .tm-task-title{
+
+    text-decoration:line-through;
+
+    color:var(--tm-muted);
+}
+
+.tm-task-meta{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    margin-top:6px;
+
+    flex-wrap:wrap;
+}
+
+.tm-tag{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:5px;
+
+    padding:4px 8px;
+
+    border:1px solid var(--tm-line);
+
+    border-radius:999px;
+
+    font-size:10px;
+
+    color:var(--tm-muted);
+}
+
+.tm-tag.priority-high{
+    color:#a64d45;
+}
+
+.tm-tag.priority-medium{
+    color:var(--tm-gold);
+}
+
+.tm-tag.priority-low{
+    color:var(--tm-green-2);
+}
+
+.tm-task-actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:7px;
+}
+
+.tm-icon-btn{
+
+    width:34px;
+    height:34px;
+
+    border:1px solid var(--tm-line);
+
+    background:transparent;
+
+    color:var(--tm-muted);
+
+    border-radius:50%;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    transition:.2s ease;
+}
+
+.tm-icon-btn:hover{
+
+    color:var(--tm-danger);
+
+    border-color:var(--tm-danger);
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.tm-empty{
+
+    text-align:center;
+
+    padding:60px 20px;
+
+    border-top:1px solid var(--tm-line);
+
+    border-bottom:1px solid var(--tm-line);
+
+    color:var(--tm-muted);
+}
+
+.tm-empty i{
+
+    font-size:25px;
+
+    color:var(--tm-gold);
+
+    margin-bottom:14px;
+}
+
+.tm-empty h4{
+
+    font-family:"Playfair Display",serif;
+
+    color:var(--tm-text);
+
+    font-size:22px;
+
+    margin-bottom:5px;
+}
+
+
+/* =========================================================
+   TOMORROW PLANNER
+========================================================= */
+
+.tm-planner{
+
+    border-top:1px solid var(--tm-line);
+
+    border-bottom:1px solid var(--tm-line);
+
+    padding:25px 0;
+}
+
+.tm-form-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        2.2fr 1fr 1fr 1fr auto;
+
+    gap:10px;
+
+    align-items:end;
+}
+
+.tm-field label{
+
+    display:block;
+
+    font-size:10px;
+
+    color:var(--tm-muted);
+
+    text-transform:uppercase;
+
+    letter-spacing:.12em;
+
+    margin-bottom:7px;
+}
+
+.tm-input,
+.tm-select{
+
+    width:100%;
+
+    border:1px solid var(--tm-line);
+
+    background:var(--tm-paper);
+
+    color:var(--tm-text);
+
+    border-radius:11px;
+
+    padding:12px 13px;
+
+    transition:.2s ease;
+}
+
+.tm-input:focus,
+.tm-select:focus{
+
+    border-color:var(--tm-gold);
+
+    box-shadow:
+        0 0 0 3px rgba(179,138,62,.09);
+}
+
+.tm-add-btn{
+
+    height:43px;
+
+    padding:0 18px;
+
+    border:0;
+
+    border-radius:11px;
+
+    background:var(--tm-green);
+
+    color:#fff;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    gap:8px;
+
+    transition:.25s ease;
+}
+
+.tm-add-btn:hover{
+
+    background:var(--tm-green-2);
+
+    transform:translateY(-1px);
+}
+
+body.tm-night .tm-add-btn{
+
+    background:var(--tm-gold);
+
+    color:#17130b;
+}
+
+
+/* =========================================================
+   BRAIN DUMP
+========================================================= */
+
+.tm-dump-area{
+
+    display:grid;
+
+    grid-template-columns:
+        1.1fr .9fr;
+
+    gap:35px;
+}
+
+.tm-dump-box{
+
+    border-bottom:1px solid var(--tm-line);
+
+    padding-bottom:20px;
+}
+
+.tm-dump-box textarea{
+
+    width:100%;
+
+    min-height:180px;
+
+    resize:vertical;
+
+    border:0;
+
+    border-bottom:1px solid var(--tm-line);
+
+    background:transparent;
+
+    color:var(--tm-text);
+
+    font-family:"DM Sans",sans-serif;
+
+    line-height:1.7;
+
+    padding:12px 0;
+
+    font-size:15px;
+}
+
+.tm-dump-box textarea:focus{
+
+    border-color:var(--tm-gold);
+}
+
+.tm-dump-actions{
+
+    margin-top:14px;
+
+    display:flex;
+
+    justify-content:flex-end;
+}
+
+.tm-dump-list{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:0;
+
+    border-top:1px solid var(--tm-line);
+}
+
+.tm-dump-item{
+
+    padding:17px 0;
+
+    border-bottom:1px solid var(--tm-line);
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.tm-dump-content p{
+
+    font-size:14px;
+
+    line-height:1.6;
+}
+
+.tm-dump-date{
+
+    display:block;
+
+    margin-top:6px;
+
+    color:var(--tm-muted);
+
+    font-size:10px;
+}
+
+.tm-dump-actions-small{
+
+    display:flex;
+
+    gap:6px;
+
+    flex-shrink:0;
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+.tm-history-list{
+
+    border-top:1px solid var(--tm-line);
+}
+
+.tm-history-item{
+
+    display:grid;
+
+    grid-template-columns:
+        150px 1fr auto;
+
+    gap:20px;
+
+    padding:20px 0;
+
+    border-bottom:1px solid var(--tm-line);
+
+    align-items:center;
+}
+
+.tm-history-date{
+
+    font-size:12px;
+
+    color:var(--tm-muted);
+}
+
+.tm-history-title{
+
+    font-weight:600;
+
+    font-size:14px;
+}
+
+.tm-history-status{
+
+    font-size:11px;
+
+    color:var(--tm-gold);
+
+    text-transform:uppercase;
+
+    letter-spacing:.08em;
+}
+
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+.tm-insights-grid{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(3,1fr);
+
+    gap:20px;
+}
+
+.tm-insight{
+
+    padding:22px 0;
+
+    border-top:1px solid var(--tm-line);
+
+    border-bottom:1px solid var(--tm-line);
+}
+
+.tm-insight-icon{
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid var(--tm-gold);
+
+    color:var(--tm-gold);
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    margin-bottom:18px;
+}
+
+.tm-insight-number{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:38px;
+}
+
+.tm-insight-label{
+
+    color:var(--tm-muted);
+
+    font-size:12px;
+
+    margin-top:5px;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.tm-secondary-btn{
+
+    border:1px solid var(--tm-line);
+
+    background:transparent;
+
+    color:var(--tm-text);
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+    transition:.2s ease;
+}
+
+.tm-secondary-btn:hover{
+
+    border-color:var(--tm-gold);
+
+    color:var(--tm-gold);
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+.tm-toast{
+
+    position:fixed;
+
+    left:50%;
+
+    bottom:28px;
+
+    transform:
+        translate(-50%,20px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    background:var(--tm-green);
+
+    color:#fff;
+
+    padding:12px 18px;
+
+    border-radius:999px;
+
+    font-size:12px;
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.2);
+
+    z-index:9999;
+
+    transition:.3s ease;
+}
+
+.tm-toast.show{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0);
+}
+
+body.tm-night .tm-toast{
+
+    background:var(--tm-gold);
+
+    color:#17130b;
+}
+
+
+/* =========================================================
+   MOBILE NAV
+========================================================= */
+
+.tm-mobile-nav{
+
+    display:none;
+
+    position:fixed;
+
+    left:10px;
+    right:10px;
+    bottom:10px;
+
+    padding:7px;
+
+    background:var(--tm-paper);
+
+    border:1px solid var(--tm-line);
+
+    border-radius:18px;
+
+    box-shadow:var(--tm-shadow);
+
+    z-index:500;
+}
+
+.tm-mobile-nav button{
+
+    flex:1;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--tm-muted);
+
+    padding:9px 3px;
+
+    border-radius:12px;
+
+    font-size:9px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:4px;
+}
+
+.tm-mobile-nav button i{
+    font-size:15px;
+}
+
+.tm-mobile-nav button.active{
+
+    color:var(--tm-gold);
+
+    background:
+        rgba(179,138,62,.09);
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media(max-width:1050px){
+
+    .tm-form-grid{
+
+        grid-template-columns:
+            2fr 1fr 1fr;
+    }
+
+    .tm-form-grid .tm-add-btn{
+
+        grid-column:1/-1;
+    }
+
+    .tm-dump-area{
+
+        grid-template-columns:1fr;
+    }
+
+}
+
+
+@media(max-width:800px){
+
+    .tm-sidebar{
+        display:none;
+    }
+
+    .tm-main{
+        margin-left:0;
+    }
+
+    .tm-container{
+
+        width:min(
+            calc(100% - 34px),
+            680px
+        );
+
+        padding-top:22px;
+
+        padding-bottom:100px;
+    }
+
+    .tm-mobile-nav{
+        display:flex;
+    }
+
+    .tm-topbar{
+        margin-bottom:25px;
+    }
+
+    .tm-hero{
+        padding-bottom:30px;
+    }
+
+    .tm-hero h2{
+
+        font-size:
+            clamp(40px,13vw,65px);
+    }
+
+    .tm-stats{
+
+        grid-template-columns:1fr;
+
+        margin-bottom:30px;
+    }
+
+    .tm-stat{
+
+        border-right:0;
+
+        border-bottom:1px solid var(--tm-line);
+
+        padding:15px 0;
+    }
+
+    .tm-stat:last-child{
+        border-bottom:0;
+    }
+
+    .tm-section-head{
+
+        align-items:flex-start;
+
+        flex-direction:column;
+    }
+
+    .tm-section-head h3{
+        font-size:28px;
+    }
+
+    .tm-form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .tm-form-grid .tm-add-btn{
+        grid-column:auto;
+    }
+
+    .tm-task{
+
+        grid-template-columns:
+            auto 1fr;
+
+        gap:12px;
+    }
+
+    .tm-task-actions{
+
+        grid-column:2;
+
+        justify-content:flex-start;
+    }
+
+    .tm-insights-grid{
+        grid-template-columns:1fr;
+    }
+
+    .tm-history-item{
+
+        grid-template-columns:1fr;
+
+        gap:7px;
+    }
+
+    .tm-theme-toggle{
+        padding:6px;
+    }
+
+    #themeText{
+        display:none;
+    }
+
+}
+
+
+@media(max-width:480px){
+
+    .tm-container{
+
+        width:
+            calc(100% - 26px);
+    }
+
+    .tm-topbar{
+
+        align-items:flex-start;
+    }
+
+    .tm-date-value{
+        font-size:12px;
+    }
+
+    .tm-live-time{
+        font-size:11px;
+    }
+
+    .tm-theme-toggle{
+        flex-shrink:0;
+    }
+
+    .tm-hero h2{
+        font-size:43px;
+    }
+
+    .tm-hero-text{
+        font-size:14px;
+    }
+
+    .tm-task{
+        padding:16px 0;
+    }
+
+    .tm-task-title{
+        font-size:14px;
+    }
+
+    .tm-today-focus-text{
+        font-size:22px;
+    }
+
+}
+
+</style>
+</head>
+
+
+<body>
+
+<div class="tm-app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="tm-sidebar">
+
+        <div class="tm-brand">
+
+            <div class="tm-brand-mark">
+                <i class="fa-regular fa-moon"></i>
+            </div>
+
+            <h1>Tomorrow</h1>
+
+            <p>Plan before you sleep</p>
+
+        </div>
+
+
+        <nav class="tm-nav">
+
+            <button
+                class="tm-nav-btn active"
+                data-section="today"
+                type="button"
+            >
+                <i class="fa-solid fa-sun"></i>
+                <span>Today</span>
+            </button>
+
+
+            <button
+                class="tm-nav-btn"
+                data-section="tomorrow"
+                type="button"
+            >
+                <i class="fa-regular fa-calendar"></i>
+                <span>Tomorrow</span>
+            </button>
+
+
+            <button
+                class="tm-nav-btn"
+                data-section="brain"
+                type="button"
+            >
+                <i class="fa-regular fa-lightbulb"></i>
+                <span>Brain Dump</span>
+            </button>
+
+
+            <button
+                class="tm-nav-btn"
+                data-section="history"
+                type="button"
+            >
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>History</span>
+            </button>
+
+
+            <button
+                class="tm-nav-btn"
+                data-section="insights"
+                type="button"
+            >
+                <i class="fa-solid fa-chart-simple"></i>
+                <span>Insights</span>
+            </button>
+
+        </nav>
+
+
+        <div class="tm-sidebar-bottom">
+
+            <small>
+                Clear your mind tonight.<br>
+                Let tomorrow begin with a plan.
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="tm-main">
+
+        <div class="tm-container">
+
+
+            <!-- =================================================
+                 TOPBAR
+            ================================================== -->
+
+            <header class="tm-topbar">
+
+                <div>
+
+                    <div
+                        class="tm-date-label"
+                        id="greetingLabel"
+                    >
+                        Good Evening
+                    </div>
+
+
+                    <div
+                        class="tm-date-value"
+                        id="currentDate"
+                    >
+                        Loading date...
+                    </div>
+
+
+                    <div
+                        class="tm-live-time"
+                        id="liveClock"
+                    >
+                        00:00:00
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="tm-theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Toggle day and night mode"
+                >
+
+                    <span
+                        class="tm-theme-icon"
+                        id="themeIcon"
+                    >
+                        <i class="fa-regular fa-sun"></i>
+                    </span>
+
+
+                    <span id="themeText">
+                        Day
+                    </span>
+
+
+                    <span class="tm-toggle-track">
+
+                        <span class="tm-toggle-dot"></span>
+
+                    </span>
+
+                </button>
+
+            </header>
+
+
+            <!-- =================================================
+                 TODAY SECTION
+            ================================================== -->
+
+            <section
+                class="tm-section active"
+                id="todaySection"
+            >
+
+
+                <div class="tm-hero">
+
+                    <div
+                        class="tm-kicker"
+                        id="greetingKicker"
+                    >
+                        A quiet moment to check in
+                    </div>
+
+
+                    <h2>
+
+                        Make today
+                        <span id="greetingWord">
+                            evening
+                        </span>
+                        count.
+
+                    </h2>
+
+
+                    <p class="tm-hero-text">
+
+                        You planned your next day before sleeping.
+                        Now focus on what actually matters instead
+                        of carrying every task in your head.
+
+                    </p>
+
+                </div>
+
+
+                <div class="tm-stats">
+
+
+                    <div class="tm-stat">
+
+                        <div
+                            class="tm-stat-number"
+                            id="todayTotal"
+                        >
+                            0
+                        </div>
+
+                        <div class="tm-stat-label">
+                            Tasks today
+                        </div>
+
+                    </div>
+
+
+                    <div class="tm-stat">
+
+                        <div
+                            class="tm-stat-number"
+                            id="todayCompleted"
+                        >
+                            0
+                        </div>
+
+                        <div class="tm-stat-label">
+                            Completed
+                        </div>
+
+                    </div>
+
+
+                    <div class="tm-stat">
+
+                        <div
+                            class="tm-stat-number"
+                            id="todayRemaining"
+                        >
+                            0
+                        </div>
+
+                        <div class="tm-stat-label">
+                            Remaining
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- DYNAMIC TODAY MESSAGE -->
+
+                <div
+                    class="tm-today-focus"
+                    id="todayFocus"
+                ></div>
+
+
+                <div class="tm-section-head">
+
+                    <div>
+
+                        <h3>
+                            Today's plan
+                        </h3>
+
+                        <p>
+                            One task at a time.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tm-progress-wrap">
+
+                    <div class="tm-progress-info">
+
+                        <span>
+                            Daily progress
+                        </span>
+
+                        <span id="progressText">
+                            0%
+                        </span>
+
+                    </div>
+
+
+                    <div class="tm-progress-bar">
+
+                        <div
+                            class="tm-progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="tm-task-list"
+                    id="todayTaskList"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 TOMORROW SECTION
+            ================================================== -->
+
+            <section
+                class="tm-section"
+                id="tomorrowSection"
+            >
+
+
+                <div class="tm-hero">
+
+                    <div class="tm-kicker">
+                        Before you sleep
+                    </div>
+
+
+                    <h2>
+
+                        Plan
+                        <span>tomorrow.</span>
+
+                    </h2>
+
+
+                    <p class="tm-hero-text">
+
+                        Put tomorrow's tasks here tonight.
+                        When the new day arrives, they will
+                        automatically appear in Today.
+
+                    </p>
+
+                </div>
+
+
+                <div class="tm-section-head">
+
+                    <div>
+
+                        <h3>
+                            Tomorrow's plan
+                        </h3>
+
+                        <p id="tomorrowDateLabel">
+                            Loading...
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="tm-planner">
+
+                    <form id="taskForm">
+
+                        <div class="tm-form-grid">
+
+
+                            <div class="tm-field">
+
+                                <label for="taskTitle">
+                                    Task
+                                </label>
+
+                                <input
+                                    class="tm-input"
+                                    id="taskTitle"
+                                    type="text"
+                                    placeholder="What needs to be done?"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="tm-field">
+
+                                <label for="taskCategory">
+                                    Category
+                                </label>
+
+                                <select
+                                    class="tm-select"
+                                    id="taskCategory"
+                                >
+
+                                    <option value="Study">
+                                        Study
+                                    </option>
+
+                                    <option value="Coding">
+                                        Coding
+                                    </option>
+
+                                    <option value="Career">
+                                        Career
+                                    </option>
+
+                                    <option value="Personal">
+                                        Personal
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="tm-field">
+
+                                <label for="taskPriority">
+                                    Priority
+                                </label>
+
+                                <select
+                                    class="tm-select"
+                                    id="taskPriority"
+                                >
+
+                                    <option value="High">
+                                        High
+                                    </option>
+
+                                    <option
+                                        value="Medium"
+                                        selected
+                                    >
+                                        Medium
+                                    </option>
+
+                                    <option value="Low">
+                                        Low
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="tm-field">
+
+                                <label for="taskTime">
+                                    Time
+                                </label>
+
+                                <input
+                                    class="tm-input"
+                                    id="taskTime"
+                                    type="time"
+                                >
+
+                            </div>
+
+
+                            <button
+                                class="tm-add-btn"
+                                type="submit"
+                            >
+
+                                <i class="fa-solid fa-plus"></i>
+
+                                Add Task
+
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <div
+                    class="tm-task-list"
+                    id="tomorrowTaskList"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 BRAIN DUMP
+            ================================================== -->
+
+            <section
+                class="tm-section"
+                id="brainSection"
+            >
+
+
+                <div class="tm-hero">
+
+                    <div class="tm-kicker">
+                        Empty your head
+                    </div>
+
+
+                    <h2>
+
+                        Don't carry
+                        <span>everything.</span>
+
+                    </h2>
+
+
+                    <p class="tm-hero-text">
+
+                        Write down random thoughts, ideas,
+                        reminders or things you don't want
+                        to forget.
+
+                    </p>
+
+                </div>
+
+
+                <div class="tm-dump-area">
+
+
+                    <div class="tm-dump-box">
+
+                        <textarea
+                            id="brainInput"
+                            placeholder="What's on your mind?"
+                        ></textarea>
+
+
+                        <div class="tm-dump-actions">
+
+                            <button
+                                class="tm-add-btn"
+                                id="saveBrainBtn"
+                                type="button"
+                            >
+
+                                <i class="fa-solid fa-feather-pointed"></i>
+
+                                Save Thought
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+
+                    <div>
+
+                        <div class="tm-section-head">
+
+                            <div>
+
+                                <h3>
+                                    Saved thoughts
+                                </h3>
+
+                                <p>
+                                    Your mental inbox.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="tm-dump-list"
+                            id="brainList"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 HISTORY
+            ================================================== -->
+
+            <section
+                class="tm-section"
+                id="historySection"
+            >
+
+
+                <div class="tm-hero">
+
+                    <div class="tm-kicker">
+                        Look back
+                    </div>
+
+
+                    <h2>
+
+                        Your
+                        <span>progress.</span>
+
+                    </h2>
+
+
+                    <p class="tm-hero-text">
+
+                        A simple record of what you planned
+                        and what you completed.
+
+                    </p>
+
+                </div>
+
+
+                <div
+                    class="tm-history-list"
+                    id="historyList"
+                ></div>
+
+            </section>
+
+
+            <!-- =================================================
+                 INSIGHTS
+            ================================================== -->
+
+            <section
+                class="tm-section"
+                id="insightsSection"
+            >
+
+
+                <div class="tm-hero">
+
+                    <div class="tm-kicker">
+                        Small patterns
+                    </div>
+
+
+                    <h2>
+
+                        See how you
+                        <span>work.</span>
+
+                    </h2>
+
+
+                    <p class="tm-hero-text">
+
+                        Use simple numbers to understand your
+                        planning and completion habits.
+
+                    </p>
+
+                </div>
+
+
+                <div class="tm-insights-grid">
+
+
+                    <div class="tm-insight">
+
+                        <div class="tm-insight-icon">
+                            <i class="fa-solid fa-fire"></i>
+                        </div>
+
+
+                        <div
+                            class="tm-insight-number"
+                            id="insightStreak"
+                        >
+                            0
+                        </div>
+
+
+                        <div class="tm-insight-label">
+                            Planning streak
+                        </div>
+
+                    </div>
+
+
+                    <div class="tm-insight">
+
+                        <div class="tm-insight-icon">
+                            <i class="fa-solid fa-list-check"></i>
+                        </div>
+
+
+                        <div
+                            class="tm-insight-number"
+                            id="insightTotal"
+                        >
+                            0
+                        </div>
+
+
+                        <div class="tm-insight-label">
+                            Total tasks
+                        </div>
+
+                    </div>
+
+
+                    <div class="tm-insight">
+
+                        <div class="tm-insight-icon">
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+
+
+                        <div
+                            class="tm-insight-number"
+                            id="insightCompletion"
+                        >
+                            0%
+                        </div>
+
+
+                        <div class="tm-insight-label">
+                            Completion rate
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- =====================================================
+         MOBILE NAV
+    ====================================================== -->
+
+    <nav class="tm-mobile-nav">
+
+
+        <button
+            class="active"
+            data-section="today"
+            type="button"
+        >
+
+            <i class="fa-solid fa-sun"></i>
+
+            <span>Today</span>
+
+        </button>
+
+
+        <button
+            data-section="tomorrow"
+            type="button"
+        >
+
+            <i class="fa-regular fa-calendar"></i>
+
+            <span>Tomorrow</span>
+
+        </button>
+
+
+        <button
+            data-section="brain"
+            type="button"
+        >
+
+            <i class="fa-regular fa-lightbulb"></i>
+
+            <span>Brain</span>
+
+        </button>
+
+
+        <button
+            data-section="history"
+            type="button"
+        >
+
+            <i class="fa-solid fa-clock-rotate-left"></i>
+
+            <span>History</span>
+
+        </button>
+
+
+        <button
+            data-section="insights"
+            type="button"
+        >
+
+            <i class="fa-solid fa-chart-simple"></i>
+
+            <span>Insights</span>
+
+        </button>
+
+    </nav>
+
+
+    <!-- =====================================================
+         TOAST
+    ====================================================== -->
+
+    <div
+        class="tm-toast"
+        id="toast"
+    ></div>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   STORAGE
+========================================================= */
+
+const TASK_KEY =
+    "tomorrow_app_tasks_v2";
+
+const BRAIN_KEY =
+    "tomorrow_app_brain_v2";
+
+const THEME_KEY =
+    "tomorrow_theme_v2";
+
+
+/* =========================================================
+   STATE
+========================================================= */
+
+let tasks =
+    JSON.parse(
+        localStorage.getItem(TASK_KEY) || "[]"
+    );
+
+let brainDump =
+    JSON.parse(
+        localStorage.getItem(BRAIN_KEY) || "[]"
+    );
+
+
+/* =========================================================
+   SAVE
+========================================================= */
+
+function saveTasks(){
+
+    localStorage.setItem(
+        TASK_KEY,
+        JSON.stringify(tasks)
+    );
+
+}
+
+
+function saveBrain(){
+
+    localStorage.setItem(
+        BRAIN_KEY,
+        JSON.stringify(brainDump)
+    );
+
+}
+
+
+/* =========================================================
+   DATE KEY
+========================================================= */
+
+function dateKey(
+    date = new Date()
+){
+
+    const year =
+        date.getFullYear();
+
+    const month =
+        String(
+            date.getMonth() + 1
+        ).padStart(2,"0");
+
+    const day =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+
+    return `${year}-${month}-${day}`;
+
+}
+
+
+/* =========================================================
+   TOMORROW
+========================================================= */
+
+function tomorrowDate(){
+
+    const date =
+        new Date();
+
+    date.setDate(
+        date.getDate() + 1
+    );
+
+    return date;
+
+}
+
+
+function tomorrowKey(){
+
+    return dateKey(
+        tomorrowDate()
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    key,
+    options = {}
+){
+
+    const date =
+        new Date(
+            key + "T00:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-IN",
+        {
+            day:"numeric",
+            month:"long",
+            year:"numeric",
+            ...options
+        }
+    );
+
+}
+
+
+/* =========================================================
+   FORMAT TIME
+========================================================= */
+
+function formatTaskTime(time){
+
+    if(!time){
+        return "";
+    }
+
+
+    const [
+        hour,
+        minute
+    ] =
+        time.split(":");
+
+
+    const date =
+        new Date();
+
+
+    date.setHours(
+        Number(hour),
+        Number(minute)
+    );
+
+
+    return date.toLocaleTimeString(
+        "en-IN",
+        {
+            hour:"numeric",
+            minute:"2-digit",
+            hour12:true
+        }
+    );
+
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+========================================================= */
+
+function escapeHTML(value){
+
+    return String(value)
+
+        .replaceAll(
+            "&",
+            "&amp;"
+        )
+
+        .replaceAll(
+            "<",
+            "&lt;"
+        )
+
+        .replaceAll(
+            ">",
+            "&gt;"
+        )
+
+        .replaceAll(
+            '"',
+            "&quot;"
+        )
+
+        .replaceAll(
+            "'",
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   GREETING
+========================================================= */
+
+function updateGreeting(){
+
+    const now =
+        new Date();
+
+    const hour =
+        now.getHours();
+
+
+    let greeting =
+        "Good Evening";
+
+    let kicker =
+        "A quiet moment to check in";
+
+
+    if(
+        hour >= 5 &&
+        hour < 12
+    ){
+
+        greeting =
+            "Good Morning";
+
+        kicker =
+            "Start today with intention";
+
+    }
+
+    else if(
+        hour >= 12 &&
+        hour < 17
+    ){
+
+        greeting =
+            "Good Afternoon";
+
+        kicker =
+            "Keep your day moving";
+
+    }
+
+    else{
+
+        greeting =
+            "Good Evening";
+
+        kicker =
+            "A quiet moment to check in";
+
+    }
+
+
+    const label =
+        document.getElementById(
+            "greetingLabel"
+        );
+
+    const kickerElement =
+        document.getElementById(
+            "greetingKicker"
+        );
+
+    const word =
+        document.getElementById(
+            "greetingWord"
+        );
+
+
+    if(label){
+
+        label.textContent =
+            greeting;
+
+    }
+
+
+    if(kickerElement){
+
+        kickerElement.textContent =
+            kicker;
+
+    }
+
+
+    if(word){
+
+        word.textContent =
+            greeting
+                .replace(
+                    "Good ",
+                    ""
+                )
+                .toLowerCase();
+
+    }
+
+}
+
+
+/* =========================================================
+   LIVE CLOCK
+========================================================= */
+
+function updateLiveClock(){
+
+    const now =
+        new Date();
+
+
+    const time =
+        now.toLocaleTimeString(
+            "en-IN",
+            {
+                hour:"2-digit",
+                minute:"2-digit",
+                second:"2-digit",
+                hour12:true
+            }
+        );
+
+
+    const clock =
+        document.getElementById(
+            "liveClock"
+        );
+
+
+    if(clock){
+
+        clock.textContent =
+            time;
+
+    }
+
+
+    updateGreeting();
+
+}
+
+
+/* =========================================================
+   HEADER DATE
+========================================================= */
+
+function updateHeader(){
+
+    const now =
+        new Date();
+
+
+    const currentDate =
+        document.getElementById(
+            "currentDate"
+        );
+
+
+    const tomorrowLabel =
+        document.getElementById(
+            "tomorrowDateLabel"
+        );
+
+
+    if(currentDate){
+
+        currentDate.textContent =
+            now.toLocaleDateString(
+                "en-IN",
+                {
+                    weekday:"long",
+                    day:"numeric",
+                    month:"long",
+                    year:"numeric"
+                }
+            );
+
+    }
+
+
+    if(tomorrowLabel){
+
+        tomorrowLabel.textContent =
+            formatDate(
+                tomorrowKey(),
+                {
+                    weekday:"long"
+                }
+            );
+
+    }
+
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+function setTheme(theme){
+
+    const isNight =
+        theme === "night";
+
+
+    document.body.classList.toggle(
+        "tm-night",
+        isNight
+    );
+
+
+    const icon =
+        document.getElementById(
+            "themeIcon"
+        );
+
+    const text =
+        document.getElementById(
+            "themeText"
+        );
+
+
+    if(isNight){
+
+        icon.innerHTML =
+            `<i class="fa-regular fa-moon"></i>`;
+
+        text.textContent =
+            "Night";
+
+    }
+
+    else{
+
+        icon.innerHTML =
+            `<i class="fa-regular fa-sun"></i>`;
+
+        text.textContent =
+            "Day";
+
+    }
+
+
+    localStorage.setItem(
+        THEME_KEY,
+        theme
+    );
+
+}
+
+
+function initTheme(){
+
+    const saved =
+        localStorage.getItem(
+            THEME_KEY
+        );
+
+
+    if(
+        saved === "day" ||
+        saved === "night"
+    ){
+
+        setTheme(saved);
+
+        return;
+
+    }
+
+
+    const hour =
+        new Date().getHours();
+
+
+    const night =
+        hour >= 18 ||
+        hour < 6;
+
+
+    setTheme(
+        night
+            ? "night"
+            : "day"
+    );
+
+}
+
+
+function toggleTheme(){
+
+    const isNight =
+        document.body.classList.contains(
+            "tm-night"
+        );
+
+
+    setTheme(
+        isNight
+            ? "day"
+            : "night"
+    );
+
+
+    showToast(
+        isNight
+            ? "Day mode enabled."
+            : "Night mode enabled."
+    );
+
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+let toastTimer;
+
+
+function showToast(message){
+
+    const toast =
+        document.getElementById(
+            "toast"
+        );
+
+
+    toast.textContent =
+        message;
+
+
+    toast.classList.add(
+        "show"
+    );
+
+
+    clearTimeout(
+        toastTimer
+    );
+
+
+    toastTimer =
+        setTimeout(
+            () => {
+
+                toast.classList.remove(
+                    "show"
+                );
+
+            },
+            2200
+        );
+
+}
+
+
+/* =========================================================
+   ADD TASK
+========================================================= */
+
+function addTask(event){
+
+    event.preventDefault();
+
+
+    const title =
+        document.getElementById(
+            "taskTitle"
+        )
+        .value
+        .trim();
+
+
+    if(!title){
+
+        showToast(
+            "Please enter a task."
+        );
+
+        return;
+
+    }
+
+
+    const category =
+        document.getElementById(
+            "taskCategory"
+        ).value;
+
+
+    const priority =
+        document.getElementById(
+            "taskPriority"
+        ).value;
+
+
+    const time =
+        document.getElementById(
+            "taskTime"
+        ).value;
+
+
+    tasks.push({
+
+        id:
+            Date.now(),
+
+        title:
+
+            title,
+
+        date:
+            tomorrowKey(),
+
+        time:
+
+            time,
+
+        category:
+
+            category,
+
+        priority:
+
+            priority,
+
+        completed:
+
+            false,
+
+        createdAt:
+
+            new Date().toISOString()
+
+    });
+
+
+    saveTasks();
+
+
+    document
+        .getElementById(
+            "taskForm"
+        )
+        .reset();
+
+
+    document
+        .getElementById(
+            "taskPriority"
+        )
+        .value =
+            "Medium";
+
+
+    renderAll();
+
+
+    showToast(
+        "Added to tomorrow."
+    );
+
+}
+
+
+/* =========================================================
+   TOGGLE TASK
+========================================================= */
+
+function toggleTask(id){
+
+    const task =
+        tasks.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!task){
+        return;
+    }
+
+
+    task.completed =
+        !task.completed;
+
+
+    task.completedAt =
+        task.completed
+            ? new Date().toISOString()
+            : null;
+
+
+    saveTasks();
+
+    renderAll();
+
+
+    showToast(
+        task.completed
+            ? "Task completed."
+            : "Task marked incomplete."
+    );
+
+}
+
+
+/* =========================================================
+   DELETE TASK
+========================================================= */
+
+function deleteTask(id){
+
+    tasks =
+        tasks.filter(
+            task =>
+                task.id !== id
+        );
+
+
+    saveTasks();
+
+    renderAll();
+
+
+    showToast(
+        "Task removed."
+    );
+
+}
+
+
+/* =========================================================
+   MOVE TASK TO TOMORROW
+========================================================= */
+
+function moveToTomorrow(id){
+
+    const task =
+        tasks.find(
+            item =>
+                item.id === id
+        );
+
+
+    if(!task){
+        return;
+    }
+
+
+    task.date =
+        tomorrowKey();
+
+
+    task.completed =
+        false;
+
+
+    task.completedAt =
+        null;
+
+
+    saveTasks();
+
+    renderAll();
+
+
+    showToast(
+        "Task moved to tomorrow."
+    );
+
+}
+
+
+/* =========================================================
+   TASK HTML
+========================================================= */
+
+function taskHTML(task){
+
+    const time =
+        formatTaskTime(
+            task.time
+        );
+
+
+    return `
+
+        <article
+            class="tm-task ${
+                task.completed
+                    ? "completed"
+                    : ""
+            }"
+        >
+
+            <button
+                class="tm-task-check"
+                type="button"
+                onclick="toggleTask(${task.id})"
+                aria-label="Complete task"
+            >
+
+                <i class="fa-solid fa-check"></i>
+
+            </button>
+
+
+            <div class="tm-task-content">
+
+                <div class="tm-task-title">
+                    ${escapeHTML(task.title)}
+                </div>
+
+
+                <div class="tm-task-meta">
+
+                    <span class="tm-tag">
+
+                        <i class="fa-regular fa-folder"></i>
+
+                        ${escapeHTML(task.category)}
+
+                    </span>
+
+
+                    <span
+                        class="tm-tag priority-${task.priority.toLowerCase()}"
+                    >
+
+                        <i class="fa-solid fa-flag"></i>
+
+                        ${escapeHTML(task.priority)}
+
+                    </span>
+
+
+                    ${
+                        time
+                        ?
+                        `
+                            <span class="tm-tag">
+
+                                <i class="fa-regular fa-clock"></i>
+
+                                ${time}
+
+                            </span>
+                        `
+                        :
+                        ""
+                    }
+
+                </div>
+
+            </div>
+
+
+            <div class="tm-task-actions">
+
+                ${
+                    task.date === dateKey()
+                    ?
+                    `
+                        <button
+                            class="tm-icon-btn"
+                            type="button"
+                            onclick="moveToTomorrow(${task.id})"
+                            title="Move to tomorrow"
+                        >
+
+                            <i class="fa-solid fa-arrow-right"></i>
+
+                        </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                <button
+                    class="tm-icon-btn"
+                    type="button"
+                    onclick="deleteTask(${task.id})"
+                    title="Delete task"
+                >
+
+                    <i class="fa-regular fa-trash-can"></i>
+
+                </button>
+
+            </div>
+
+        </article>
+
+    `;
+
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+function emptyState(
+    icon,
+    title,
+    text
+){
+
+    return `
+
+        <div class="tm-empty">
+
+            <i class="${icon}"></i>
+
+            <h4>
+                ${title}
+            </h4>
+
+            <p>
+                ${text}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   TODAY FOCUS MESSAGE
+========================================================= */
+
+function renderTodayFocus(
+    todayTasks
+){
+
+    const focus =
+        document.getElementById(
+            "todayFocus"
+        );
+
+
+    if(!focus){
+        return;
+    }
+
+
+    if(!todayTasks.length){
+
+        focus.innerHTML = `
+
+            <div class="tm-today-focus-label">
+                Today's focus
+            </div>
+
+            <div class="tm-today-focus-text">
+                Aaj ke liye abhi kuch planned nahi hai.
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const incomplete =
+        todayTasks.filter(
+            task =>
+                !task.completed
+        );
+
+
+    const activeTasks =
+        incomplete.length
+            ? incomplete
+            : todayTasks;
+
+
+    /* -----------------------------------------
+       ONE TASK
+    ----------------------------------------- */
+
+    if(activeTasks.length === 1){
+
+        const task =
+            activeTasks[0];
+
+
+        focus.innerHTML = `
+
+            <div class="tm-today-focus-label">
+                Today's focus
+            </div>
+
+            <div class="tm-today-focus-text">
+
+                Aaj aapko
+
+                <strong>
+                    ${escapeHTML(task.title)}
+                </strong>
+
+                karna hai.
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    /* -----------------------------------------
+       MULTIPLE TASKS
+    ----------------------------------------- */
+
+    const first =
+        activeTasks[0];
+
+
+    const remaining =
+        activeTasks.length - 1;
+
+
+    focus.innerHTML = `
+
+        <div class="tm-today-focus-label">
+            Today's focus
+        </div>
+
+        <div class="tm-today-focus-text">
+
+            Aaj aapko
+
+            <strong>
+                ${escapeHTML(first.title)}
+            </strong>
+
+            aur
+
+            <strong>
+                ${remaining} aur task
+            </strong>
+
+            complete karne hain.
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   RENDER TODAY
+========================================================= */
+
+function renderToday(){
+
+    const today =
+        dateKey();
+
+
+    const todayTasks =
+        tasks.filter(
+            task =>
+                task.date === today
+        );
+
+
+    const completed =
+        todayTasks.filter(
+            task =>
+                task.completed
+        ).length;
+
+
+    const remaining =
+        todayTasks.length -
+        completed;
+
+
+    const total =
+        todayTasks.length;
+
+
+    const percent =
+        total
+            ? Math.round(
+                completed /
+                total *
+                100
+              )
+            : 0;
+
+
+    document.getElementById(
+        "todayTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "todayCompleted"
+    ).textContent =
+        completed;
+
+
+    document.getElementById(
+        "todayRemaining"
+    ).textContent =
+        remaining;
+
+
+    document.getElementById(
+        "progressText"
+    ).textContent =
+        `${percent}%`;
+
+
+    document.getElementById(
+        "progressFill"
+    ).style.width =
+        `${percent}%`;
+
+
+    /* DYNAMIC MESSAGE */
+
+    renderTodayFocus(
+        todayTasks
+    );
+
+
+    const list =
+        document.getElementById(
+            "todayTaskList"
+        );
+
+
+    if(!todayTasks.length){
+
+        list.innerHTML =
+            emptyState(
+                "fa-regular fa-calendar-check",
+                "Nothing planned yet",
+                "Plan something tomorrow before you sleep."
+            );
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        todayTasks
+            .map(
+                task =>
+                    taskHTML(task)
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   RENDER TOMORROW
+========================================================= */
+
+function renderTomorrow(){
+
+    const tomorrow =
+        tomorrowKey();
+
+
+    const tomorrowTasks =
+        tasks.filter(
+            task =>
+                task.date === tomorrow
+        );
+
+
+    const list =
+        document.getElementById(
+            "tomorrowTaskList"
+        );
+
+
+    if(!tomorrowTasks.length){
+
+        list.innerHTML =
+            emptyState(
+                "fa-regular fa-moon",
+                "Tomorrow is still open",
+                "Add the things you want your future self to handle."
+            );
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        tomorrowTasks
+            .map(
+                task =>
+                    taskHTML(task)
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   BRAIN DUMP SAVE
+========================================================= */
+
+function saveBrainThought(){
+
+    const input =
+        document.getElementById(
+            "brainInput"
+        );
+
+
+    const text =
+        input.value.trim();
+
+
+    if(!text){
+
+        showToast(
+            "Write something first."
+        );
+
+        return;
+
+    }
+
+
+    brainDump.unshift({
+
+        id:
+            Date.now(),
+
+        text:
+
+            text,
+
+        createdAt:
+
+            new Date().toISOString()
+
+    });
+
+
+    saveBrain();
+
+
+    input.value =
+        "";
+
+
+    renderBrain();
+
+
+    showToast(
+        "Thought saved."
+    );
+
+}
+
+
+/* =========================================================
+   DELETE BRAIN
+========================================================= */
+
+function deleteBrain(id){
+
+    brainDump =
+        brainDump.filter(
+            item =>
+                item.id !== id
+        );
+
+
+    saveBrain();
+
+    renderBrain();
+
+
+    showToast(
+        "Thought deleted."
+    );
+
+}
+
+
+/* =========================================================
+   CONVERT BRAIN TO TASK
+========================================================= */
+
+function convertBrainToTask(id){
+
+    const item =
+        brainDump.find(
+            brain =>
+                brain.id === id
+        );
+
+
+    if(!item){
+        return;
+    }
+
+
+    tasks.push({
+
+        id:
+            Date.now(),
+
+        title:
+            item.text,
+
+        date:
+            tomorrowKey(),
+
+        time:
+            "",
+
+        category:
+            "Other",
+
+        priority:
+            "Medium",
+
+        completed:
+            false,
+
+        completedAt:
+            null,
+
+        createdAt:
+            new Date().toISOString()
+
+    });
+
+
+    brainDump =
+        brainDump.filter(
+            brain =>
+                brain.id !== id
+        );
+
+
+    saveTasks();
+
+    saveBrain();
+
+    renderAll();
+
+
+    showToast(
+        "Converted into tomorrow's task."
+    );
+
+}
+
+
+/* =========================================================
+   RENDER BRAIN
+========================================================= */
+
+function renderBrain(){
+
+    const list =
+        document.getElementById(
+            "brainList"
+        );
+
+
+    if(!brainDump.length){
+
+        list.innerHTML =
+            emptyState(
+                "fa-regular fa-lightbulb",
+                "Your mind is clear",
+                "Saved thoughts will appear here."
+            );
+
+        return;
+
+    }
+
+
+    list.innerHTML =
+        brainDump
+            .map(
+                item => {
+
+                    const savedDate =
+                        new Date(
+                            item.createdAt
+                        )
+                        .toLocaleDateString(
+                            "en-IN",
+                            {
+                                day:"numeric",
+                                month:"short"
+                            }
+                        );
+
+
+                    return `
+
+                        <div class="tm-dump-item">
+
+                            <div class="tm-dump-content">
+
+                                <p>
+                                    ${escapeHTML(item.text)}
+                                </p>
+
+                                <span class="tm-dump-date">
+                                    Saved ${savedDate}
+                                </span>
+
+                            </div>
+
+
+                            <div class="tm-dump-actions-small">
+
+                                <button
+                                    class="tm-icon-btn"
+                                    type="button"
+                                    onclick="convertBrainToTask(${item.id})"
+                                    title="Convert to task"
+                                >
+
+                                    <i class="fa-solid fa-arrow-turn-down"></i>
+
+                                </button>
+
+
+                                <button
+                                    class="tm-icon-btn"
+                                    type="button"
+                                    onclick="deleteBrain(${item.id})"
+                                    title="Delete"
+                                >
+
+                                    <i class="fa-regular fa-trash-can"></i>
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   HISTORY
+========================================================= */
+
+function renderHistory(){
+
+    const list =
+        document.getElementById(
+            "historyList"
+        );
+
+
+    if(!tasks.length){
+
+        list.innerHTML =
+            emptyState(
+                "fa-solid fa-clock-rotate-left",
+                "No history yet",
+                "Your task activity will appear here."
+            );
+
+        return;
+
+    }
+
+
+    const grouped =
+        {};
+
+
+    tasks.forEach(
+        task => {
+
+            if(
+                !grouped[task.date]
+            ){
+
+                grouped[task.date] =
+                    [];
+
+            }
+
+
+            grouped[task.date]
+                .push(task);
+
+        }
+    );
+
+
+    const dates =
+        Object.keys(grouped)
+            .sort()
+            .reverse();
+
+
+    list.innerHTML =
+        dates
+            .map(
+                date => {
+
+                    const dayTasks =
+                        grouped[date];
+
+
+                    const done =
+                        dayTasks.filter(
+                            task =>
+                                task.completed
+                        ).length;
+
+
+                    const percent =
+                        dayTasks.length
+                            ?
+                            Math.round(
+                                done /
+                                dayTasks.length *
+                                100
+                            )
+                            :
+                            0;
+
+
+                    return `
+
+                        <div class="tm-history-item">
+
+                            <div class="tm-history-date">
+
+                                ${formatDate(date)}
+
+                            </div>
+
+
+                            <div>
+
+                                <div class="tm-history-title">
+
+                                    ${dayTasks.length}
+
+                                    task${
+                                        dayTasks.length === 1
+                                            ? ""
+                                            : "s"
+                                    }
+
+                                    planned
+
+                                </div>
+
+
+                                <div class="tm-history-date">
+
+                                    ${done}
+                                    completed
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="tm-history-status">
+
+                                ${percent}%
+
+                            </div>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   INSIGHTS
+========================================================= */
+
+function calculateStreak(){
+
+    const plannedDates =
+        new Set(
+            tasks.map(
+                task =>
+                    task.date
+            )
+        );
+
+
+    let streak =
+        0;
+
+
+    const cursor =
+        new Date();
+
+
+    while(true){
+
+        const key =
+            dateKey(cursor);
+
+
+        if(
+            !plannedDates.has(key)
+        ){
+
+            break;
+
+        }
+
+
+        streak++;
+
+
+        cursor.setDate(
+            cursor.getDate() - 1
+        );
+
+    }
+
+
+    return streak;
+
+}
+
+
+function renderInsights(){
+
+    const total =
+        tasks.length;
+
+
+    const completed =
+        tasks.filter(
+            task =>
+                task.completed
+        ).length;
+
+
+    const rate =
+        total
+            ?
+            Math.round(
+                completed /
+                total *
+                100
+            )
+            :
+            0;
+
+
+    document.getElementById(
+        "insightStreak"
+    ).textContent =
+        calculateStreak();
+
+
+    document.getElementById(
+        "insightTotal"
+    ).textContent =
+        total;
+
+
+    document.getElementById(
+        "insightCompletion"
+    ).textContent =
+        `${rate}%`;
+
+}
+
+
+/* =========================================================
+   RENDER ALL
+========================================================= */
+
+function renderAll(){
+
+    renderToday();
+
+    renderTomorrow();
+
+    renderBrain();
+
+    renderHistory();
+
+    renderInsights();
+
+}
+
+
+/* =========================================================
+   DATE ROLLOVER
+========================================================= */
+
+function processRollover(){
+
+    /*
+       Important:
+
+       Every task is saved with an actual date.
+
+       Example:
+
+       19 Sep:
+       task.date = 2026-09-20
+
+       On 20 Sep:
+
+       Today = 2026-09-20
+
+       So the same task automatically
+       appears inside Today.
+
+       Nothing needs to be manually moved.
+    */
+
+    renderToday();
+
+    renderTomorrow();
+
+}
+
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function showSection(section){
+
+    document
+        .querySelectorAll(
+            ".tm-section"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const target =
+        document.getElementById(
+            `${section}Section`
+        );
+
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
+
+
+    document
+        .querySelectorAll(
+            "[data-section]"
+        )
+        .forEach(
+            button => {
+
+                button.classList.toggle(
+                    "active",
+                    button.dataset.section === section
+                );
+
+            }
+        );
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* =========================================================
+   EVENTS
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    () => {
+
+        initTheme();
+
+        updateHeader();
+
+        updateLiveClock();
+
+        renderAll();
+
+
+        document
+            .getElementById(
+                "themeToggle"
+            )
+            .addEventListener(
+                "click",
+                toggleTheme
+            );
+
+
+        document
+            .getElementById(
+                "taskForm"
+            )
+            .addEventListener(
+                "submit",
+                addTask
+            );
+
+
+        document
+            .getElementById(
+                "saveBrainBtn"
+            )
+            .addEventListener(
+                "click",
+                saveBrainThought
+            );
+
+
+        document
+            .querySelectorAll(
+                "[data-section]"
+            )
+            .forEach(
+                button => {
+
+                    button.addEventListener(
+                        "click",
+                        () => {
+
+                            showSection(
+                                button.dataset.section
+                            );
+
+                        }
+                    );
+
+                }
+            );
+
+
+        /*
+           Real-time clock + automatic
+           day/date rollover.
+        */
+
+        setInterval(
+            () => {
+
+                updateHeader();
+
+                updateLiveClock();
+
+                processRollover();
+
+            },
+            1000
+        );
+
+    }
+);
+
+
+/* =========================================================
+   BASIC FRONTEND PROTECTION
+========================================================= */
+
+(function(){
+
+    /* -----------------------------------------
+       Disable right click
+    ----------------------------------------- */
+
+    document.addEventListener(
+        "contextmenu",
+        function(event){
+
+            event.preventDefault();
+
+        }
+    );
+
+
+    /* -----------------------------------------
+       Disable common shortcuts
+    ----------------------------------------- */
+
+    document.addEventListener(
+        "keydown",
+        function(event){
+
+            const key =
+                event.key.toLowerCase();
+
+
+            /* F12 */
+
+            if(
+                event.key === "F12"
+            ){
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+
+            /* Ctrl + Shift + I */
+
+            if(
+                event.ctrlKey &&
+                event.shiftKey &&
+                key === "i"
+            ){
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+
+            /* Ctrl + Shift + J */
+
+            if(
+                event.ctrlKey &&
+                event.shiftKey &&
+                key === "j"
+            ){
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+
+            /* Ctrl + Shift + C */
+
+            if(
+                event.ctrlKey &&
+                event.shiftKey &&
+                key === "c"
+            ){
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+
+            /* Ctrl + U */
+
+            if(
+                event.ctrlKey &&
+                key === "u"
+            ){
+
+                event.preventDefault();
+
+                return false;
+
+            }
+
+        }
+    );
+
+
+    /* -----------------------------------------
+       Disable text selection
+    ----------------------------------------- */
+
+    document.addEventListener(
+        "selectstart",
+        function(event){
+
+            event.preventDefault();
+
+        }
+    );
+
+
+    /* -----------------------------------------
+       Disable drag
+    ----------------------------------------- */
+
+    document.addEventListener(
+        "dragstart",
+        function(event){
+
+            event.preventDefault();
+
+        }
+    );
+
+
+    /* -----------------------------------------
+       Console notice
+    ----------------------------------------- */
+
+    console.log(
+        "%cTomorrow",
+        "font-size:28px;font-weight:bold;color:#b38a3e;"
+    );
+
+    console.log(
+        "%cPlan tomorrow. Clear your mind.",
+        "font-size:13px;"
+    );
+
+})();
+
+</script>
+
+</body>
+</html>
