@@ -94,6 +94,8 @@ body.tm-night{
 
     scrollbar-width:none;
     -ms-overflow-style:none;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 *::-webkit-scrollbar{
@@ -135,6 +137,7 @@ input,
 textarea,
 select{
     font:inherit;
+    -webkit-tap-highlight-color:transparent;
 }
 
 button{
@@ -150,6 +153,7 @@ select{
 a{
     color:inherit;
     text-decoration:none;
+    -webkit-tap-highlight-color:transparent;
 }
 
 
@@ -275,6 +279,8 @@ a{
     text-align:left;
 
     transition:.25s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-nav-btn i{
@@ -368,6 +374,43 @@ body.tm-night .tm-nav-btn.active{
     margin-bottom:35px;
 }
 
+.tm-topbar-brand{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:13px;
+
+    min-width:0;
+}
+
+.tm-topbar-logo{
+
+    width:42px;
+    height:42px;
+
+    object-fit:contain;
+
+    display:block;
+
+    flex-shrink:0;
+
+    border-radius:50%;
+
+    user-select:none;
+
+    -webkit-user-select:none;
+
+    -webkit-user-drag:none;
+
+    -webkit-tap-highlight-color:transparent;
+}
+
+.tm-topbar-info{
+    min-width:0;
+}
+
 .tm-date-label{
 
     font-size:12px;
@@ -416,7 +459,7 @@ body.tm-night .tm-nav-btn.active{
 
     border-radius:999px;
 
-    padding:7px 9px 7px 8px;
+    padding:7px 9px;
 
     display:flex;
 
@@ -428,30 +471,13 @@ body.tm-night .tm-nav-btn.active{
 
     box-shadow:
         0 7px 22px rgba(38,61,50,.05);
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-theme-toggle:hover{
 
     border-color:var(--tm-gold);
-}
-
-.tm-theme-icon{
-
-    width:30px;
-    height:30px;
-
-    border-radius:50%;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    background:var(--tm-paper-2);
-
-    color:var(--tm-gold);
-
-    font-size:13px;
 }
 
 #themeText{
@@ -874,6 +900,8 @@ body.tm-night .tm-stat-number{
     color:transparent;
 
     transition:.25s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-task.completed .tm-task-check{
@@ -971,6 +999,8 @@ body.tm-night .tm-stat-number{
     justify-content:center;
 
     transition:.2s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-icon-btn:hover{
@@ -1075,6 +1105,8 @@ body.tm-night .tm-stat-number{
     padding:12px 13px;
 
     transition:.2s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-input:focus,
@@ -1113,6 +1145,8 @@ body.tm-night .tm-stat-number{
     gap:8px;
 
     transition:.25s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-add-btn:hover{
@@ -1373,6 +1407,8 @@ body.tm-night .tm-add-btn{
     font-weight:600;
 
     transition:.2s ease;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-secondary-btn:hover{
@@ -1486,6 +1522,8 @@ body.tm-night .tm-toast{
     align-items:center;
 
     gap:4px;
+
+    -webkit-tap-highlight-color:transparent;
 }
 
 .tm-mobile-nav button i{
@@ -1653,6 +1691,25 @@ body.tm-night .tm-toast{
     .tm-topbar{
 
         align-items:flex-start;
+
+        gap:12px;
+    }
+
+    .tm-topbar-brand{
+
+        gap:10px;
+
+        min-width:0;
+    }
+
+    .tm-topbar-logo{
+
+        width:36px;
+        height:36px;
+    }
+
+    .tm-topbar-info{
+        min-width:0;
     }
 
     .tm-date-value{
@@ -1722,7 +1779,9 @@ body.tm-night .tm-toast{
         text-align:center;
         width:100%;
     }
-}</style>
+}
+
+</style>
 </head>
 
 
@@ -1831,61 +1890,57 @@ body.tm-night .tm-toast{
 
             <header class="tm-topbar">
 
-                <div>
+                <div class="tm-topbar-brand">
 
-                    <div
-                        class="tm-date-label"
-                        id="greetingLabel"
+                    <img
+                        src="images/logo2.png"
+                        alt="Aman Logo"
+                        class="tm-topbar-logo"
+                        draggable="false"
                     >
-                        Good Evening
-                    </div>
+
+                    <div class="tm-topbar-info">
+
+                        <div
+                            class="tm-date-label"
+                            id="greetingLabel"
+                        >
+                            Good Evening
+                        </div>
 
 
-                    <div
-                        class="tm-date-value"
-                        id="currentDate"
-                    >
-                        Loading date...
-                    </div>
+                        <div
+                            class="tm-date-value"
+                            id="currentDate"
+                        >
+                            Loading date...
+                        </div>
 
 
-                    <div
-                        class="tm-live-time"
-                        id="liveClock"
-                    >
-                        00:00:00
+                        <div
+                            class="tm-live-time"
+                            id="liveClock"
+                        >
+                            00:00:00
+                        </div>
+
                     </div>
 
                 </div>
 
 
-                <button
-                    class="tm-theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Toggle day and night mode"
-                >
+              <button
+    class="tm-theme-toggle"
+    id="themeToggle"
+    type="button"
+    aria-label="Toggle day and night mode"
+>
 
-                    <span
-                        class="tm-theme-icon"
-                        id="themeIcon"
-                    >
-                        <i class="fa-regular fa-sun"></i>
-                    </span>
+    <span class="tm-toggle-track">
+        <span class="tm-toggle-dot"></span>
+    </span>
 
-
-                    <span id="themeText">
-                        Day
-                    </span>
-
-
-                    <span class="tm-toggle-track">
-
-                        <span class="tm-toggle-dot"></span>
-
-                    </span>
-
-                </button>
+</button>
 
             </header>
 
@@ -2985,44 +3040,10 @@ function setTheme(theme){
     const isNight =
         theme === "night";
 
-
     document.body.classList.toggle(
         "tm-night",
         isNight
     );
-
-
-    const icon =
-        document.getElementById(
-            "themeIcon"
-        );
-
-    const text =
-        document.getElementById(
-            "themeText"
-        );
-
-
-    if(isNight){
-
-        icon.innerHTML =
-            `<i class="fa-regular fa-moon"></i>`;
-
-        text.textContent =
-            "Night";
-
-    }
-
-    else{
-
-        icon.innerHTML =
-            `<i class="fa-regular fa-sun"></i>`;
-
-        text.textContent =
-            "Day";
-
-    }
-
 
     localStorage.setItem(
         THEME_KEY,
@@ -3030,7 +3051,6 @@ function setTheme(theme){
     );
 
 }
-
 
 function initTheme(){
 
